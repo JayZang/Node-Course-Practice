@@ -1,6 +1,7 @@
 const express= require('express')
 const bodyParser = require('body-parser')
-var { ObjectID } = require('mongodb');
+const { ObjectID } = require('mongodb');
+const _ = require('lodash');
 
 const { mongoose } = require('./db/mongoose');
 const { Todo } = require('./models/todo');
@@ -72,6 +73,35 @@ app.delete('/todo/:id', (req, res) => {
     .catch((e) => {
       res.status(404).send();
     })
+})
+
+// Patch 為 Http 協議中的更新 Request（資料原本就有，但 '部份' 更新）
+// 而 PUT Request 則是假使原有資料就更換成新數據（有替換之意），若沒有則新增數據
+app.patch('/todo/:id', (req, res) => {
+  var id = req.params.id;
+  var body = _.pick(req.body, ['text', 'completed']);
+console.log(body)
+  if(!ObjectID.isValid(id))
+    res.status(404).send();
+
+  if(_.isBoolean(body.completed) && body.completed)
+    body.completeAt = new Date().getTime();
+  else{
+    body.completed = false;
+    body.completeAt = null;
+  }
+
+  Todo.findByIdAndUpdate(id, {$set: body}, {new: true})
+    .then((todo) => {
+      if(!todo)
+        res.status(404).send();
+
+      res.send({todo});
+    }).catch((e) => {
+      res.status(404).send(e);
+    })
+
+
 })
 
 app.listen(3000, () => {
