@@ -1,0 +1,23 @@
+{
+  "name": "mongoose-use",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha server/test/*.test.js",
+    "test:watch": "nodemon --exec \"npm test\"",
+    "start": "node server/server.js"
+  },
+  "author": "Jay",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.8"
+  },
+  "devDependencies": {
+    "expect": "^1.20.2",
+    "mocha": "^5.2.0",
+    "supertest": "^3.1.0"
+  }
+}
