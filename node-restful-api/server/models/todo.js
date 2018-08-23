@@ -6,7 +6,7 @@ var Todo = mongoose.model('Todo', {
     required: true
   },
   completed: {
-    type: String,
+    type: Boolean,
     default: false
   },
   completeAt: {
