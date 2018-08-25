@@ -5,6 +5,7 @@ This is the Node.js practice code.
 * Have a basic concept to set up a server
 * Use third-part API to get weather at the region what we input
 * Use mongoDB to store data
+* Authenticate token
 * Wrtie test case
 * Write RESTful route
 * ES6 & ES7 function
@@ -29,6 +30,9 @@ This is the Node.js practice code.
 * supertest
 * expect
 * lodash
+* jsonwebtoken
+* bcryptjs
+* validator
 
 ## Usage
 Select one topic folder (ex, node-restful-api)
